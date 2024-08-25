@@ -2,46 +2,48 @@
 
 {% block content %}
 
-
-<div class="row justify-content-center">
-  <div class="col-md-6">
-
-    <div class="card mt-5">
-
-      <div class="card-body">
-
-        <h4 class="card-title text-center">Register</h4>
-
-        <form method="POST" action="/register">
-          
-          {{ form.hidden_tag() }}
-
-          <div class="form-group">
-            {{ form.email(class="form-control", placeholder="Email") }}
-          </div>
-
-          <div class="form-group">
-            {{ form.password(class="form-control", placeholder="Password") }}
-          </div>
-
-          <div class="form-group">
-            {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
-          </div>
-
-          <div class="form-group">
-            {{ form.user_type(class="form-control", placeholder="User Type (Candidate or Company)") }}
-          </div>
-
-          {{ form.submit(class="btn btn-primary btn-block") }}
-
-        </form>
-
-        <p class="text-center mt-3">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
-
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px;">
+    <div class="card-body">
+      
+      <!-- Thêm hình ảnh phía trên form -->
+      <div class="text-center mb-4">
+        <img src="https://cdn.glitch.global/e1f47b5b-76bb-4e95-b20a-104ea0ac95cf/Lovepik_com-401473960-man-computer-work-icon-free-vector-illustration-material.png?v=1724484270627" 
+             class="img-fluid" alt="Man working on computer" style="max-height: 200px; object-fit: cover;">
       </div>
 
-    </div>
+      <form method="POST" action="/register">
+        {{ form.hidden_tag() }}
 
+        <div class="mb-3">
+          {{ form.email(class="form-control form-control-lg", placeholder="Enter your email") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.password(class="form-control form-control-lg", placeholder="Enter your password") }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.confirm_password(class="form-control form-control-lg", placeholder="Confirm your password") }}
+        </div>
+
+        <div class="mb-4">
+          <label for="user_type" class="form-label">User Type</label>
+          <select name="user_type" id="user_type" class="form-control form-control-lg" required>
+            <option value="" disabled selected>Select user type</option>
+            <option value="candidate">Candidate</option>
+            <option value="company">Company</option>
+          </select>
+        </div>
+
+        {{ form.submit(class="btn btn-primary btn-lg w-100") }}
+
+      </form>
+
+      <p class="text-center mt-3">
+        Already have an account? <a href="{{ url_for('login') }}" class="text-primary">Login here</a>
+      </p>
+    </div>
   </div>
 </div>
 

@@ -5,7 +5,7 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
+            <div class="alert alert-{{ category }} mt-3">
                 {{ message }}
             </div>
         {% endfor %}
@@ -13,25 +13,37 @@
 {% endwith %}
 
 <div class="container mt-5">
-    <h1 class="mb-4">Upload the Resume</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Upload Your Resume</h1>
+        <a href="/history" class="btn btn-secondary btn-lg">History</a>
+    </div>
+
     <form method="POST" enctype="multipart/form-data" action="/upload">
-        <div class="mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" name="name" class="form-control" required>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
+
         <div class="mb-3">
             <label for="skills" class="form-label">Skills (comma-separated):</label>
-            <input type="text" name="skills" class="form-control">
+            <input type="text" id="skills" name="skills" class="form-control" placeholder="e.g., Python, JavaScript, React">
         </div>
-        <div class="mb-3">
-            <label for="resume" class="form-label">Resume (PDF only):</label>
-            <input type="file" name="resume" class="form-control" accept=".pdf" required>
+
+        <div class="mb-4">
+            <label for="resume" class="form-label">Upload Resume (PDF only):</label>
+            <input type="file" id="resume" name="resume" class="form-control" accept=".pdf" required>
         </div>
-        <button type="submit" class="btn btn-primary">Upload</button>
+
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary btn-lg">Upload</button>
+        </div>
     </form>
 </div>
+
 {% endblock %}

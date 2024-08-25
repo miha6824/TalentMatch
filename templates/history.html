@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Upload History</h1>
+
+    {% if uploads|length == 0 %}
+        <p class="text-center">You have no uploads yet.</p>
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Skills</th>
+                    <th>Resume</th>
+                    <th>Upload Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for upload in uploads %}
+                <tr>
+                    <td>{{ upload.name }}</td>
+                    <td>{{ upload.email }}</td>
+                    <td>{{ upload.skills | join(', ') }}</td>
+                    <td>
+                        <a href="{{ url_for('download_resume', resume_id=upload.resume_id) }}" class="btn btn-secondary btn-sm">Download</a>
+
+                    </td>
+                    <td>{{ upload._id.generation_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
